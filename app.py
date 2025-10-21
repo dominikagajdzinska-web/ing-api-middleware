@@ -1,11 +1,11 @@
-import os
+ximport os
 from flask import Flask, jsonify, request
 import requests
 
 app = Flask(__name__)
 
-TLS_CERT = ('example_client_tls.cer', 'example_client_tls.key')
-SIGN_CERT = ('example_client_signing.cer', 'example_client_signing.key')
+TLS_CERT = ('certs/example_client_tls.cer', 'certs/example_client_tls.key')
+SIGN_CERT = ('certs/example_client_signing.cer', 'certs/example_client_signing.key')
 
 CLIENT_ID = os.environ.get('ING_CLIENT_ID', '2cc378c2-0a8b-446a-b38e-ff6834398b4d')
 
