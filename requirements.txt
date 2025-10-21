@@ -1,18 +1,3 @@
 Flask==3.0.0
 requests==2.31.0
 gunicorn==21.2.0
-```
-
-4. Kliknij **"Commit changes..."** (zielony przycisk)
-
----
-
-## **Plik 3: `Procfile`**
-
-1. Znowu kliknij **"Add file" → "Create new file"**
-2. Nazwa pliku wpisz: `Procfile` 
-   - ⚠️ **UWAGA**: Wielkie "P" i **BEZ** żadnego rozszerzenia (nie .txt!)
-   - Dokładnie: `Procfile`
-3. W polu z treścią wklej **dokładnie to** (1 linijka):
-```
-web: gunicorn app:app
