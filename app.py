@@ -1,12 +1,24 @@
 from flask import Flask, jsonify, request
 import requests
 import os
+import tempfile
 
 app = Flask(__name__)
 
-CLIENT_CERT = ('client.crt', 'client.key')
+cert_content = os.environ.get('CLIENT_CERT_CONTENT')
+key_content = os.environ.get('CLIENT_KEY_CONTENT')
+
+cert_file = tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.crt')
+cert_file.write(cert_content)
+cert_file.close()
+
+key_file = tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.key')
+key_file.write(key_content)
+key_file.close()
+
+CLIENT_CERT = (cert_file.name, key_file.name)
 ING_TOKEN_URL = "https://api.sandbox.ing.com/oauth2/token"
-ING_TRANSACTIONS_URL = "https://api.sandbox.ing.com/v1/accounts/{account_id}/transactions"
+ING_TRANSACTIONS_URL = "https://api.sandbox.ing.com/v1/accounts/{account_id}/transactions
 
 @app.route("/get-token", methods=["GET"])
 def get_token():
