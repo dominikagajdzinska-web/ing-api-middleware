@@ -18,7 +18,7 @@ key_file.close()
 
 CLIENT_CERT = (cert_file.name, key_file.name)
 ING_TOKEN_URL = "https://api.sandbox.ing.com/oauth2/token"
-ING_TRANSACTIONS_URL = "https://api.sandbox.ing.com/v1/accounts/{account_id}/transactions
+ING_TRANSACTIONS_URL = "https://api.sandbox.ing.com/v1/accounts/{account_id}/transactions"
 
 @app.route("/get-token", methods=["GET"])
 def get_token():
