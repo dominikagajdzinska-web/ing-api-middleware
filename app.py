@@ -34,7 +34,6 @@ def get_token():
 def get_transactions():
     account_id = request.args.get('account_id', 'YOUR_ACCOUNT_ID')
     
-    # Najpierw pobierz token
     token_response = requests.post(
         ING_TOKEN_URL,
         data={"grant_type": "client_credentials", "scope": "aispis"},
@@ -51,7 +50,6 @@ def get_transactions():
     
     token = token_response.json().get("access_token")
     
-    # Pobierz transakcje
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/json"
@@ -71,31 +69,3 @@ def get_transactions():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-```
-
-4. Kliknij **"Commit changes"** (zielony przycisk na dole)
-
----
-
-### **Plik 2: `requirements.txt`**
-
-1. Znowu kliknij **"Add file" → "Create new file"**
-2. Nazwa pliku: `requirements.txt`
-3. Wklej:
-```
-Flask==3.0.0
-requests==2.31.0
-gunicorn==21.2.0
-```
-
-4. Kliknij **"Commit changes"**
-
----
-
-### **Plik 3: `Procfile`** (BEZ rozszerzenia .txt!)
-
-1. Znowu **"Add file" → "Create new file"**
-2. Nazwa pliku: `Procfile` (dokładnie tak, wielkie P, bez .txt)
-3. Wklej:
-```
-web: gunicorn app:app
